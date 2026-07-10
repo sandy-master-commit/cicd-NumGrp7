@@ -17,9 +17,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Installer les dépendances
-        run: npm install
+        run: npm ci
+
+      - name: Construire le projet
+        run: npm run build
+
+      - name: Publier le dossier dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
 
   test_Groupe7:
     needs: build_Groupe7
@@ -33,9 +43,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Installer les dépendances
-        run: npm install
+        run: npm ci
 
       - name: Lancer les tests
         run: npm test

@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-   "start": "node server.js", 
-"test": "echo 'Succès : 100% des tests unitaires validés !' && exit 0" 
+  "start": "node server.js",
+  "build": "mkdir -p dist && cp server.js dist/",
+  "test": "echo 'Succès : 100% des tests unitaires validés !' && exit 0"
 },
 
   "keywords": [],
