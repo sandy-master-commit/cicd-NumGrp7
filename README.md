@@ -1,7 +1,7 @@
 # cicd-NumGrp7
 
 ## Description
-Projet de CI/CD réalisé dans le cadre du Master DevOps.
+Projet de CI/CD 1.1, réalisé dans le cadre du Master DevOps.
 
 ## Technologies utilisées
 - Node.js
