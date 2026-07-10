@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build_Groupe7:
@@ -16,7 +19,7 @@ jobs:
       - name: Installer Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Installer les dépendances
@@ -35,6 +38,10 @@ jobs:
     needs: build_Groupe7
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [22, 24]
+
     steps:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
@@ -42,7 +49,7 @@ jobs:
       - name: Installer Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
           cache: npm
 
       - name: Installer les dépendances
@@ -50,3 +57,13 @@ jobs:
 
       - name: Lancer les tests
         run: npm test
+
+  deploy_Groupe7:
+    needs: test_Groupe7
+    runs-on: ubuntu-latest
+
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Déploiement
+        run: echo "Déploiement effectué sur la branche main."
